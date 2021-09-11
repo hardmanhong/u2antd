@@ -1,0 +1,27 @@
+.u2antd-search-form {
+  padding: 16px 16px 0;
+  background: #fff;
+  margin-bottom: 16px;
+  :global {
+    .ant-form-item {
+      margin-bottom: 16px;
+    }
+    .ant-picker-range {
+      width: 100%;
+    }
+  }
+  .u2antd-search-form-buttonCol {
+    text-align: right;
+    margin-bottom: 16px;
+  }
+  .u2antd-search-form-btnSubmit {
+    margin-right: 10px;
+  }
+  .u2antd-search-form-icon {
+    transition: all 0.3s ease 0s;
+    transform: rotate(0turn);
+    &.u2antd-search-form-icon-up {
+      transform: rotate(0.5turn);
+    }
+  }
+}

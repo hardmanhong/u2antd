@@ -1,0 +1,9 @@
+.u2antd-ButtonGroup {
+  .ant-btn-link {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .ant-btn + .ant-btn {
+    margin-left: 10px;
+  }
+}
