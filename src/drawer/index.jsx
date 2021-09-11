@@ -1,6 +1,6 @@
 import React from 'react'
 import { Drawer } from 'antd'
-import { useToggleCom, useToggleComWithPayload } from 'up-use'
+import { useToggleCom, useToggleComWithPayload } from 'u2hooks'
 
 const UDrawer = ({ children, onClose, ...props }) => {
   const [visible, { onHide }] = useToggleCom({

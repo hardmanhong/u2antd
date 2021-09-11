@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal } from 'antd'
-import { useToggleCom, useToggleComWithPayload } from 'up-use'
+import { useToggleCom, useToggleComWithPayload } from 'u2hooks'
 
 const UModal = ({ children, onOk, onCancel, ...props }) => {
   const [visible, { onShow, onHide }] = useToggleCom({

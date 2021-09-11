@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import './style.scss'
 import { Form, Button, Row, Col, Grid } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
-import { useBoolean } from 'up-use'
+import { useBoolean } from 'u2hooks'
 import { isFn } from '../utils'
 import {
   DEFAULT_FORM_COL,
