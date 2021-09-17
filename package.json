@@ -1,6 +1,6 @@
 {
   "name": "u2antd",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "An efficient business library base on antd",
   "main": "lib/u2antd.umd.js",
   "module": "lib/u2antd.esm.js",

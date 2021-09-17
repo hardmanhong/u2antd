@@ -81,7 +81,14 @@ const UForm = ({
         .filter((i) => Boolean(i.component))
         .map((item, i) => {
           return (
-            <Form.Item key={item?.props?.id || i} {...item.props}>
+            <Form.Item
+              key={
+                Array.isArray(item?.props?.name)
+                  ? item?.props?.name.join('-')
+                  : item?.props?.name || i
+              }
+              {...item.props}
+            >
               {isFn(item.component) ? item.component() : item.component}
             </Form.Item>
           )
