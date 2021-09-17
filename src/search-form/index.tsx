@@ -1,6 +1,15 @@
 import React, { useMemo } from 'react'
 import './style.scss'
-import { Form, Button, Row, Col, Grid } from 'antd'
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Grid,
+  FormItemProps,
+  FormProps,
+  ColProps
+} from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { useBoolean } from 'u2hooks'
 import { isFn } from '../utils'
@@ -13,6 +22,19 @@ import {
   getCollapsedColProps
 } from './utils'
 
+interface ItemProps {
+  props?: FormItemProps
+  component: React.ReactNode | (() => any)
+}
+interface SearchFromPropsType extends FormProps {
+  row?: number
+  col?: ColProps
+  list?: ItemProps[]
+  submit?: string | React.ReactNode
+  cancel?: string | React.ReactNode
+  onCancel?: () => {}
+  footer?: React.ReactNode
+}
 /**
  * list Array 渲染的表单项
  * props Object {} Form 组件的参数 https://ant-design.gitee.io/components/form-cn/#Form
@@ -21,12 +43,11 @@ import {
  * row: Number 折叠时显示多少行（包含按钮）
  */
 const SearchForm = ({
-  forwardedRef,
   list = [],
   col = {},
   row = 1,
   ...props
-}) => {
+}: SearchFromPropsType) => {
   const [form] = Form.useForm()
   const [isCollapsed, onToggleIsCollapsed] = useBoolean(true)
 
@@ -49,7 +70,6 @@ const SearchForm = ({
     : getBtnColProps(colProps, list.length)
   return (
     <Form
-      ref={forwardedRef}
       form={form}
       className='u2antd-search-form'
       {...DEFAULT_FORM_COL}
@@ -61,7 +81,14 @@ const SearchForm = ({
           .map((item, i) => {
             const col = isCollapsed ? colPropsArr[i] : colProps
             return (
-              <Col key={item?.props?.name || i} {...col}>
+              <Col
+                key={
+                  Array.isArray(item?.props?.name)
+                    ? item?.props?.name.join('-')
+                    : item?.props?.name || i
+                }
+                {...col}
+              >
                 <Form.Item {...item.props}>
                   {isFn(item.component) ? item.component() : item.component}
                 </Form.Item>
@@ -94,8 +121,5 @@ const SearchForm = ({
     </Form>
   )
 }
-const SearchFormRef = (props, ref) => {
-  return <SearchForm {...props} forwardedRef={ref} />
-}
 
-export default React.forwardRef(SearchFormRef)
+export default SearchForm

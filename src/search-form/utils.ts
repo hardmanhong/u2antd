@@ -1,5 +1,5 @@
 const SIZES = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl']
-const getSpan = (propSize) => {
+const getSpan = (propSize: any) => {
   let span
   if (typeof propSize === 'number') {
     span = propSize
@@ -8,8 +8,9 @@ const getSpan = (propSize) => {
   }
   return span
 }
-export const getBtnColProps = (colProps, length) => {
-  const buttonColProps = {}
+type buttonColPropsType = { [key: string]: any }
+export const getBtnColProps = (colProps: any, length: number) => {
+  const buttonColProps = {} as buttonColPropsType
   SIZES.forEach((size) => {
     const propSize = colProps[size]
     if (!propSize) return
@@ -20,19 +21,23 @@ export const getBtnColProps = (colProps, length) => {
   })
   return buttonColProps
 }
-export const getCollapsedBtnProps = (colProps) => {
-  const buttonColProps = {}
+export const getCollapsedBtnProps = (colProps: any) => {
+  const buttonColProps = {} as buttonColPropsType
   SIZES.forEach((size) => {
     buttonColProps[size] = colProps[size]
   })
   return buttonColProps
 }
-export const getCollapsedColProps = (colProps, count, row) => {
+export const getCollapsedColProps = (
+  colProps: any,
+  count: number,
+  row: number
+) => {
   const hide = SIZES.map((size) => ({ [size]: 0 })).reduce(
     (acc, cur) => ({ ...acc, ...cur }),
     {}
   )
-  const colPropsArr = []
+  const colPropsArr: any[] = []
   const total = count + 1 // 加上按钮
   //  fix 这里之前写 = hide，导致持有同一个引用地址
   for (let i = 0; i < count; i++) colPropsArr[i] = { ...hide }
@@ -52,7 +57,7 @@ export const getCollapsedColProps = (colProps, count, row) => {
   })
   return colPropsArr
 }
-export const getCurScreen = (screen) =>
+export const getCurScreen = (screen: {}) =>
   SIZES[
     Math.max(
       ...Object.entries(screen)

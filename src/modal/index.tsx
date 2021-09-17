@@ -1,8 +1,15 @@
 import React from 'react'
 import { Modal } from 'antd'
+import { ModalProps } from 'antd'
 import { useToggleCom, useToggleComWithPayload } from 'u2hooks'
 
-const UModal = ({ children, onOk, onCancel, ...props }) => {
+type UModalProps = ModalProps & {
+  onOk?: () => void
+  onCancel?: () => void
+  children?: React.ReactNode
+}
+
+const UModal = ({ children, onOk, onCancel, ...props }: UModalProps) => {
   const [visible, { onShow, onHide }] = useToggleCom({
     Component: UModal,
     onOk,
@@ -14,7 +21,7 @@ const UModal = ({ children, onOk, onCancel, ...props }) => {
     </Modal>
   )
 }
-const usePayload = (Component, defaultPayload) =>
+const usePayload = (Component: React.ReactNode, defaultPayload: any) =>
   useToggleComWithPayload(UModal, Component, defaultPayload)
 UModal.show = () => {}
 UModal.hide = () => {}
