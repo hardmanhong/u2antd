@@ -14,3 +14,13 @@ npm link u2antd;
 cd ../..;
 npm start
 ```
+
+### 上传
+
+```bash
+yarn build
+
+npm adduser
+
+npm publish
+```
