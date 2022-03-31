@@ -1,6 +1,6 @@
 {
   "name": "u2antd",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "An efficient business library base on antd",
   "main": "lib/u2antd.umd.js",
   "module": "lib/u2antd.esm.js",
@@ -9,6 +9,7 @@
     "**/*.css",
     "**/*.scss"
   ],
+  "homepage": "https://github.com/hardmanhong/u2antd",
   "scripts": {
     "start": "rollup -w --environment NODE_ENV:development -c config/rollup.config.dev.js",
     "build:types": "tsc --emitDeclarationOnly",
