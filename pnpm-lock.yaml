@@ -31,7 +31,7 @@ specifiers:
   rollup-plugin-terser: ^7.0.2
   tslib: ^2.3.1
   typescript: ^4.4.3
-  u2hooks: 0.1.1
+  u2hooks: 0.1.4
   wrappy: ^1.0.2
 
 devDependencies:
@@ -65,7 +65,7 @@ devDependencies:
   rollup-plugin-terser: 7.0.2_rollup@2.70.1
   tslib: 2.3.1
   typescript: 4.6.3
-  u2hooks: 0.1.1_bf6b0f1caee2d48c24ef92ff3cada851
+  u2hooks: 0.1.4_bf6b0f1caee2d48c24ef92ff3cada851
   wrappy: 1.0.2
 
 packages:
@@ -2410,7 +2410,7 @@ packages:
     dev: true
 
   /decode-uri-component/0.2.0:
-    resolution: {integrity: sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=}
+    resolution: {integrity: sha512-hjf+xovcEn31w/EUYdTXQh/8smFL/dzYjohQGEIgjyNavaJfBY2p5F527Bo1VPATxv0VYTUC2bOcXvqFwk78Og==}
     engines: {node: '>=0.10'}
     dev: true
 
@@ -2733,7 +2733,7 @@ packages:
     dev: true
 
   /filter-obj/1.1.0:
-    resolution: {integrity: sha1-mzERErxsYSehbgFsbF1/GeCAXFs=}
+    resolution: {integrity: sha512-8rXg1ZnX7xzy2NGDVkBVaAy+lSlPNwad13BtgSlLuxfIslyt5Vg64U7tFcCt4WS1R0hvtnQybT/IyCkGZ3DpXQ==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -5781,8 +5781,8 @@ packages:
     hasBin: true
     dev: true
 
-  /u2hooks/0.1.1_bf6b0f1caee2d48c24ef92ff3cada851:
-    resolution: {integrity: sha512-XjD7LGUhROE+248RnUfgvHa5zPTL5OnnMLJ7mkyMXGn/a7QO15ggae3jjFZJyJsglg/rqO/cdsjSvNm9NOUJGQ==}
+  /u2hooks/0.1.4_bf6b0f1caee2d48c24ef92ff3cada851:
+    resolution: {integrity: sha512-X6uA1xf4QXj5iFG9NDkuYqneju7sRjOa/lv68u1ib78a/nzwAQSlStS6OtmJjLgWNzBxaTWQEdpTiSIDX77gxw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'

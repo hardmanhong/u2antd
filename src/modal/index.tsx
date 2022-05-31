@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { Modal } from 'antd'
 import { ModalProps } from 'antd'
 import { useToggle, useToggleWithPayload } from 'u2hooks'
@@ -8,6 +8,7 @@ type UModalProps = ModalProps & {
   onCancel?: () => void
   children?: React.ReactNode
 }
+type useVisibleCallback = (visible: boolean) => void
 
 const UModal = ({ children, onOk, onCancel, ...props }: UModalProps) => {
   const [visible, { onShow, onHide }] = useToggle({
@@ -15,7 +16,6 @@ const UModal = ({ children, onOk, onCancel, ...props }: UModalProps) => {
     onOk,
     onCancel
   })
-  UModal.useVisible = useCallback(() => visible, [visible])
   return (
     <Modal {...props} visible={visible} onOk={onShow} onCancel={onHide}>
       {children}
@@ -28,7 +28,10 @@ const usePayload = (Component: React.ReactNode, defaultPayload: any) =>
 UModal.show = () => {}
 UModal.hide = () => {}
 UModal.toggle = () => {}
-UModal.useVisible = () => false
+UModal.onVisibleChange = (visible: boolean) => {}
+UModal.useVisible = (onVisibleChange: useVisibleCallback) => {
+  UModal.onVisibleChange = onVisibleChange
+}
 UModal.usePayload = usePayload
 
 export default UModal
