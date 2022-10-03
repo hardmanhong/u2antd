@@ -1,6 +1,6 @@
 {
   "name": "u2antd",
-  "version": "0.1.9",
+  "version": "0.1.15",
   "description": "An efficient business library base on antd",
   "main": "lib/u2antd.umd.js",
   "module": "lib/u2antd.esm.js",
@@ -60,6 +60,6 @@
     "wrappy": "^1.0.2"
   },
   "dependencies": {
-    "u2hooks": "^0.1.5"
+    "u2hooks": "0.1.8"
   }
 }

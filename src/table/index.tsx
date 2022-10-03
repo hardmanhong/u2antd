@@ -1,5 +1,6 @@
 import React from 'react'
-import { Table, TableProps } from 'antd'
+import { Table } from 'antd'
+import type { TableProps } from 'antd'
 import './style.less'
 
 interface UTableType<RecordType> extends TableProps<RecordType> {

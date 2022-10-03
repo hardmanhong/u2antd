@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal } from 'antd'
-import { ModalProps } from 'antd'
+import type { ModalProps } from 'antd'
 import { useToggle, useToggleWithPayload } from 'u2hooks'
 
 type UModalProps = ModalProps & {

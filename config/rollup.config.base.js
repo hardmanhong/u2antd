@@ -24,7 +24,7 @@ export default {
       ),
       preventAssignment: true
     }),
-    typescript(),
+    // typescript(),
     nodeResolve({
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css']
     }),

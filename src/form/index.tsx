@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormProps, FormItemProps, ColProps } from 'antd'
+import type { FormProps, FormItemProps, ColProps } from 'antd'
 import { Form, Button } from 'antd'
 import { isFn } from '../utils'
 import './style.less'

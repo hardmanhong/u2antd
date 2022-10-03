@@ -1,5 +1,6 @@
 import React from 'react'
-import { Drawer, DrawerProps } from 'antd'
+import { Drawer } from 'antd'
+import type { DrawerProps } from 'antd'
 import { useToggle, useToggleWithPayload } from 'u2hooks'
 
 type UDrawerProps = DrawerProps & {

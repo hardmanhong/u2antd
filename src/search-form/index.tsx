@@ -1,15 +1,7 @@
 import React, { useMemo } from 'react'
 import './style.less'
-import {
-  Form,
-  Button,
-  Row,
-  Col,
-  Grid,
-  FormItemProps,
-  FormProps,
-  ColProps
-} from 'antd'
+import { Form, Button, Row, Col, Grid } from 'antd'
+import type { FormItemProps, FormProps, ColProps } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { useBoolean } from 'u2hooks'
 import { isFn } from '../utils'
@@ -25,10 +17,12 @@ import {
 interface ItemProps {
   props?: FormItemProps
   component: React.ReactNode | (() => any)
+  colProps?: ColProps
 }
 interface SearchFromPropsType extends FormProps {
   row?: number
   col?: ColProps
+  buttonColProps?: ColProps
   list?: ItemProps[]
   submit?: string | React.ReactNode
   cancel?: string | React.ReactNode
@@ -47,6 +41,7 @@ const SearchForm = ({
   list = [],
   col = {},
   row = 1,
+  buttonColProps,
   onCollapsed,
   ...props
 }: SearchFromPropsType) => {
@@ -71,7 +66,7 @@ const SearchForm = ({
   )
   const currentScreen = getCurScreen(Grid.useBreakpoint())
   const isShowCollapsed = colPropsArr.some((i) => i[currentScreen] === 0)
-  const buttonColProps = isCollapsed
+  const _buttonColProps = isCollapsed
     ? isShowCollapsed
       ? getCollapsedBtnProps(colProps)
       : getBtnColProps(colProps, list.length)
@@ -92,6 +87,7 @@ const SearchForm = ({
                       : item?.props?.name || i
                   }
                   {...col}
+                  {...item?.colProps}
                 >
                   <Form.Item {...item.props}>
                     {isFn(item.component) ? item.component() : item.component}
@@ -99,7 +95,11 @@ const SearchForm = ({
                 </Col>
               )
             })}
-          <Col className='u2antd-search-form-buttonCol' {...buttonColProps}>
+          <Col
+            className='u2antd-search-form-buttonCol'
+            {..._buttonColProps}
+            {...buttonColProps}
+          >
             <Button
               className='u2antd-search-form-btnSubmit'
               type='primary'
