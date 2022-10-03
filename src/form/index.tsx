@@ -2,7 +2,7 @@ import React from 'react'
 import { FormProps, FormItemProps, ColProps } from 'antd'
 import { Form, Button } from 'antd'
 import { isFn } from '../utils'
-import './style.scss'
+import './style.less'
 
 const DEFAULT_FORM_LAYOUT = {
   labelCol: { span: 4 },
@@ -71,48 +71,45 @@ const UForm = ({
 }: UFromPropsType) => {
   const form = props.form || Form.useForm()[0]
   return (
-    <Form
-      form={form}
-      className='u2antd-form'
-      {...DEFAULT_FORM_LAYOUT}
-      {...props}
-    >
-      {list
-        .filter((i) => Boolean(i.component))
-        .map((item, i) => {
-          return (
-            <Form.Item
-              key={
-                Array.isArray(item?.props?.name)
-                  ? item?.props?.name.join('-')
-                  : item?.props?.name || i
-              }
-              {...item.props}
-            >
-              {isFn(item.component) ? item.component() : item.component}
-            </Form.Item>
+    <div className='u2antd-form'>
+      <Form form={form} {...DEFAULT_FORM_LAYOUT} {...props}>
+        {list
+          .filter((i) => Boolean(i.component))
+          .map((item, i) => {
+            return (
+              <Form.Item
+                key={
+                  Array.isArray(item?.props?.name)
+                    ? item?.props?.name.join('-')
+                    : item?.props?.name || i
+                }
+                {...item.props}
+              >
+                {isFn(item.component) ? item.component() : item.component}
+              </Form.Item>
+            )
+          })}
+        {footer ? (
+          React.isValidElement(footer) ? (
+            footer
+          ) : (
+            <FooterButtons
+              onCancel={onCancel}
+              submit={submit}
+              cancel={cancel}
+              wrapperCol={{
+                offset:
+                  (props?.labelCol?.span as number) ||
+                  DEFAULT_FORM_LAYOUT.labelCol.span,
+                span:
+                  (props?.wrapperCol?.span as number) ||
+                  DEFAULT_FORM_LAYOUT.wrapperCol.span
+              }}
+            />
           )
-        })}
-      {footer ? (
-        React.isValidElement(footer) ? (
-          footer
-        ) : (
-          <FooterButtons
-            onCancel={onCancel}
-            submit={submit}
-            cancel={cancel}
-            wrapperCol={{
-              offset:
-                (props?.labelCol?.span as number) ||
-                DEFAULT_FORM_LAYOUT.labelCol.span,
-              span:
-                (props?.wrapperCol?.span as number) ||
-                DEFAULT_FORM_LAYOUT.wrapperCol.span
-            }}
-          />
-        )
-      ) : null}
-    </Form>
+        ) : null}
+      </Form>
+    </div>
   )
 }
 

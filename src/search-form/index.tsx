@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import './style.scss'
+import './style.less'
 import {
   Form,
   Button,
@@ -33,6 +33,7 @@ interface SearchFromPropsType extends FormProps {
   submit?: string | React.ReactNode
   cancel?: string | React.ReactNode
   onCancel?: () => {}
+  onCollapsed?: (isCollapsed: boolean) => {}
   footer?: React.ReactNode
 }
 /**
@@ -46,12 +47,19 @@ const SearchForm = ({
   list = [],
   col = {},
   row = 1,
+  onCollapsed,
   ...props
 }: SearchFromPropsType) => {
   const [form] = Form.useForm()
   const [isCollapsed, onToggleIsCollapsed] = useBoolean(true)
 
   const colProps = { ...DEFAULT_ITEM_COL, ...col }
+  const onCollapsedChange = () => {
+    if (typeof onCollapsed === 'function') {
+      onCollapsed(!isCollapsed)
+    }
+    onToggleIsCollapsed()
+  }
   const onReset = () => {
     form.resetFields()
   }
@@ -69,56 +77,53 @@ const SearchForm = ({
       : getBtnColProps(colProps, list.length)
     : getBtnColProps(colProps, list.length)
   return (
-    <Form
-      form={form}
-      className='u2antd-search-form'
-      {...DEFAULT_FORM_COL}
-      {...props}
-    >
-      <Row gutter={24}>
-        {list
-          .filter((i) => Boolean(i.component))
-          .map((item, i) => {
-            const col = isCollapsed ? colPropsArr[i] : colProps
-            return (
-              <Col
-                key={
-                  Array.isArray(item?.props?.name)
-                    ? item?.props?.name.join('-')
-                    : item?.props?.name || i
-                }
-                {...col}
-              >
-                <Form.Item {...item.props}>
-                  {isFn(item.component) ? item.component() : item.component}
-                </Form.Item>
-              </Col>
-            )
-          })}
-        <Col className='u2antd-search-form-buttonCol' {...buttonColProps}>
-          <Button
-            className='u2antd-search-form-btnSubmit'
-            type='primary'
-            htmlType='submit'
-          >
-            搜索
-          </Button>
-          <Button htmlType='button' onClick={onReset}>
-            重置
-          </Button>
-          {isShowCollapsed && (
-            <Button type='link' onClick={onToggleIsCollapsed}>
-              更多
-              <DownOutlined
-                className={`u2antd-search-form-icon ${
-                  isCollapsed ? '' : 'u2antd-search-form-icon-up'
-                }`}
-              />
+    <div className='u2antd-search-form'>
+      <Form form={form} {...DEFAULT_FORM_COL} {...props}>
+        <Row gutter={24}>
+          {list
+            .filter((i) => Boolean(i.component))
+            .map((item, i) => {
+              const col = isCollapsed ? colPropsArr[i] : colProps
+              return (
+                <Col
+                  key={
+                    Array.isArray(item?.props?.name)
+                      ? item?.props?.name.join('-')
+                      : item?.props?.name || i
+                  }
+                  {...col}
+                >
+                  <Form.Item {...item.props}>
+                    {isFn(item.component) ? item.component() : item.component}
+                  </Form.Item>
+                </Col>
+              )
+            })}
+          <Col className='u2antd-search-form-buttonCol' {...buttonColProps}>
+            <Button
+              className='u2antd-search-form-btnSubmit'
+              type='primary'
+              htmlType='submit'
+            >
+              搜索
             </Button>
-          )}
-        </Col>
-      </Row>
-    </Form>
+            <Button htmlType='button' onClick={onReset}>
+              重置
+            </Button>
+            {isShowCollapsed && (
+              <Button type='link' onClick={onCollapsedChange}>
+                更多
+                <DownOutlined
+                  className={`u2antd-search-form-icon ${
+                    isCollapsed ? '' : 'u2antd-search-form-icon-up'
+                  }`}
+                />
+              </Button>
+            )}
+          </Col>
+        </Row>
+      </Form>
+    </div>
   )
 }
 

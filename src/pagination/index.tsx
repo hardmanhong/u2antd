@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Pagination, PaginationProps, RowProps } from 'antd'
-import './style.scss'
+import './style.less'
 
 declare const RowJustify: [
   'start',

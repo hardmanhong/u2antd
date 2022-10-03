@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table, TableProps } from 'antd'
-import './style.scss'
+import './style.less'
 
 interface UTableType<RecordType> extends TableProps<RecordType> {
   name?: React.ReactNode

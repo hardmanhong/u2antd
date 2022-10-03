@@ -14,7 +14,7 @@ export default {
   plugins: [
     postcss({
       minimize: process.env.NODE_ENV === 'production',
-      use: ['sass']
+      use: ['less']
     }),
     json(),
     alias(),
@@ -24,9 +24,9 @@ export default {
       ),
       preventAssignment: true
     }),
-    // typescript(),
+    typescript(),
     nodeResolve({
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss', '.css']
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css']
     }),
     commonjs({
       include: 'node_modules/**'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Drawer, DrawerProps } from 'antd'
-import { useToggleCom, useToggleComWithPayload } from 'u2hooks'
+import { useToggle, useToggleWithPayload } from 'u2hooks'
 
 type UDrawerProps = DrawerProps & {
   onClose?: () => void
@@ -8,7 +8,7 @@ type UDrawerProps = DrawerProps & {
 }
 
 const UDrawer = ({ children, onClose, ...props }: UDrawerProps) => {
-  const [visible, { onHide }] = useToggleCom({
+  const [visible, { onHide }] = useToggle({
     Component: UDrawer,
     onCancel: onClose
   })
@@ -19,7 +19,7 @@ const UDrawer = ({ children, onClose, ...props }: UDrawerProps) => {
   )
 }
 const usePayload = (Component: React.ReactNode, defaultPayload: any) =>
-  useToggleComWithPayload(UDrawer, Component, defaultPayload)
+  useToggleWithPayload(UDrawer, Component, defaultPayload)
 UDrawer.show = () => {}
 UDrawer.hide = () => {}
 UDrawer.toggle = () => {}
